@@ -1,3 +1,16 @@
+-- This fact table stores inflation trends for each product over time.
+
+-- Purpose:
+-- - Calculate and store key inflation metrics, including:
+--    - Average Consumer Price Index (`avg_cpi`).
+--    - Previous Consumer Price Index (`prev_avg_cpi`).
+--    - Inflation rate (`inflation_rate`).
+-- - Enable efficient querying for inflation analysis and reporting.
+
+-- Notes:
+-- - Data is sourced from `stg_profitability_timeseries`.
+-- - Uses `lag` to compute inflation rate as the percentage change in average CPI over time.
+
 with inflation_trends as (
     select
         product,

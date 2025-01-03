@@ -1,3 +1,18 @@
+-- This model calculates inflation trends for products over time.
+
+-- Steps:
+-- 1. Calculate the average Consumer Price Index (CPI) for each product and date.
+-- 2. Use the `lag` function to get the previous average CPI (`prev_avg_cpi`) for each product.
+-- 3. Compute the inflation rate as the percentage change between the current and previous average CPI.
+
+-- Purpose:
+-- - Analyze how prices change over time for each product.
+-- - Provide insights into inflation trends.
+
+-- Notes:
+-- - The `where` clause ensures only rows with valid previous CPI values (`prev_avg_cpi`) are included.
+-- - Input data comes from the `stg_profitability_timeseries` model.
+
 with inflation_trends as (
     select
         product,

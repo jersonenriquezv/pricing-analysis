@@ -1,3 +1,16 @@
+-- This fact table stores cost trend data for each product over time.
+
+-- Purpose:
+-- - Provide a structured dataset with key cost metrics like:
+--    - Average cost (`avg_cost`)
+--    - Total cost (`total_cost`)
+--    - Cost change (`cost_change`)
+--    - Cost change percentage (`cost_change_percentage`)
+-- - Enable efficient querying for cost analysis and reporting.
+
+-- Notes:
+-- - Data comes from `stg_profitability_timeseries`.
+
 with cost_trends as (
     select
         product,

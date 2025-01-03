@@ -1,3 +1,24 @@
+# This file defines the raw data sources used for the profitability analysis.
+# It specifies the metadata and data quality tests for:
+# 1. `bureau_of_labor_statistics_price_timeseries`: Time-series data for product prices.
+# 2. `bureau_of_labor_statistics_price_attributes`: Product attributes (e.g., product name, frequency).
+
+# Purpose:
+# - Document raw data sources used in the staging layer.
+# - Define data quality tests to ensure consistency and reliability.
+
+# Key Features:
+# - `source`: Specifies the database and schema for each raw table.
+# - `tables`: Lists the tables and their column-level metadata.
+# - Data quality tests:
+#   - `not_null`: Ensures critical fields are never null.
+#   - `accepted_values`: Validates categorical fields (e.g., frequency values).
+#   - `relationships`: Ensures relationships between tables (e.g., `variable` matches across tables).
+
+# Downstream Usage:
+# - Provides input data for the `stg_profitability_timeseries` staging model.
+# - Ensures raw data quality before transformations.
+
 version: 2
 
 sources:
