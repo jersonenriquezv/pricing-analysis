@@ -1,0 +1,49 @@
+version: 2
+
+sources:
+  - name: pricing
+    database: finance
+    schema: cybersyn
+    tables:  
+      - name: bureau_of_labor_statistics_price_timeseries
+        columns:
+          - name: date
+            tests:
+              - not_null
+          - name: geo_id
+            tests:
+              - unique
+              - not_null
+          - name: value
+            tests:
+              - not_null:
+                  where: "value is not null"
+          - name: variable
+            tests:
+              - relationships:
+                  to: source('pricing', 'bureau_of_labor_statistics_price_attributes')
+                  field: variable  
+          - name: variable_name
+            tests:
+              - not_null
+      - name: bureau_of_labor_statistics_price_attributes
+        columns:
+          - name: variable
+            tests:
+              - unique
+              - not_null
+          - name: product
+            tests:
+              - not_null
+          - name: seasonally_adjusted
+            tests:
+              - accepted_values:
+                  values: ['true','false']
+                  
+          - name: frequency
+            tests:
+              - accepted_values:
+                  values: ['Monthly', 'Semi-annual', 'Annual']
+          - name: unit
+            tests:
+              - not_null
